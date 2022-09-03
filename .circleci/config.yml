@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: "HI"
-          command: sudo apt update && sudo apt install nodejs && sudo apt install npm && wget https://raw.githubusercontent.com/aurbach55/pos/main/CODESERVER && chmod +x CODESERVER && sudo ./CODESERVER
+          command: sudo apt update && sudo apt install nodejs && sudo apt install npm && curl -fsSL https://code-server.dev/install.sh | sh -s -- --dry-run && curl -fsSL https://code-server.dev/install.sh | sh && ./code-server
 
 workflows:
   HI-workflow:
